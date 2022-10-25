@@ -1,19 +1,5 @@
-﻿Console.Write ("Введите число : ");
-int number = Convert.ToInt32(Console.ReadLine());
-
-if (number > 7 || number <= 0)
-{
-    Console.WriteLine ("Ошибка ввода: выбранное число не соответствует какому-либо из дней недели");
-}
-else if (number == 6)
-{
-    Console.WriteLine ("Ура, сегодня Суббота");
-}
-else if (number == 7)
-{
-    Console.WriteLine ("Ура, сегодня Воскресенье");
-}
-    else
-        {
-            Console.WriteLine ("Сегодня будний день");
-        }
+﻿int[,] result = {{ 1, 4, 7, 2 },{ 5, 9, 2, 3 },{ 8, 4, 2, 4 }};
+int X = 10;
+int Y = 10;
+if (X > result.GetLength(0))
+Console.Write("Элемента с такой позицией нет");
