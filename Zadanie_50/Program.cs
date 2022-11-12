@@ -1,69 +1,60 @@
-﻿Console.WriteLine("Введите номер строки: ");
-int m = Convert.ToInt32 (Console.ReadLine());
-Console.WriteLine("Введите номер столбца: ");
-int n = Convert.ToInt32 (Console.ReadLine());
+// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
+// и возвращает значение этого элемента или же указание, что такого элемента нет.
 
-int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// 17 -> такого числа в массиве нет
+
+void PrintArray(int[,] print)
 {
-    var matrix = new int[rows, columns];
-    var rnd = new Random();
-
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    for (int i = 0; i < print.GetLength(0); i++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++)
+        for (int j = 0; j < print.GetLength(1); j++)
         {
-            matrix[i, j] = rnd.Next(min, max + 1);
+            Console.Write($" {print[i, j]} ");
         }
-    }
-    return matrix;
-}
-
-
-void PrintMatrix(int[,] matrix)
-{
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        Console.Write("|");
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j],4}, ");
-            else Console.Write($"{matrix[i, j],4} ");
-        }
-        Console.WriteLine("|");
+        Console.WriteLine();
     }
 }
 
-int FindElement(int[,] arr, int num1, int num2)
-{
-    int x = arr.GetLength(0);
-    int z = arr.GetLength(1);
-    int y = default;
-    for (int i = 0; i < arr.GetLength (0); i++)
-    {
-        for (int j = 0; j < arr.GetLength (1); j++)
-        {
-            if (i == num1 && j == num2)
-            y = arr [i, j];
-        }
-    }
-    return y;
-}
 
-bool Element (int[,] arr, int num1, int num2)
-{  
+void Search (int [,] arr, int number1, int number2)
+{
+
+    int length1 = arr.GetLength(0);
+    int length2 = arr.GetLength(1);
     
+    for (int i = 0; i < length1; i++)
     {
-        return (num1 >= arr.GetLength (0) || num2 >= arr.GetLength (1));
-
+        for (int j = 0; j < length2; j++)
+        {
+            if (i == number1 && j == number2)
+            Console.WriteLine ($"Значение элемента двумерного массива: {arr[number1,number2]}");
+           
+        }
     }
-  
+    if (number1 > length1 || number2 > length2)
+    Console.WriteLine ($"Элемента с позицией {number1} и {number2} нет в массиве");
+
 }
 
-int [,] array2d = CreateMatrixRndInt (3,4,0,9);
-PrintMatrix (array2d);
-FindElement (array2d,m,n);
-int answer = FindElement (array2d,m,n);
-bool tadam = Element (array2d,m,n);
-if (tadam) Console.WriteLine($"Элемента с позицией {m} и {n} нет в массиве");
+int IntText(string message)
+{
+    Console.WriteLine(message);
+    return Convert.ToInt32(Console.ReadLine());
+}
 
-else Console.WriteLine($"Значение элементов двумерного массива: {answer}");
+
+
+Console.WriteLine("Заданный массив: ");
+int[,] result = new int[,] { { 1, 4, 7, 2 }, { 5, 9, 2, 3 }, { 8, 4, 2, 4 } };
+PrintArray(result);
+Console.WriteLine();
+int X = IntText("Введите позицию строки: ");
+int Y = IntText("Введите позицию столбца: ");
+Console.WriteLine();
+Search (result, X, Y);
+
+
